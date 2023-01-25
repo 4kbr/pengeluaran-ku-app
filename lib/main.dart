@@ -60,32 +60,101 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Expense Plan"),
+        title: const Text('Flutter App'),
       ),
       body: Column(
-        children: [
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
           const SizedBox(
             width: double.infinity,
             child: Card(
               color: Colors.blue,
               elevation: 5,
-              child: Text("Chart"),
+              child: Text('CHART!'),
             ),
           ),
           Column(
-            children: listTransaction
-                .map((e) => Card(
-                      child: Row(
-                        children: [
-                          Container(child: Text(e.amount.toString())),
-                          Container(child: Text(e.title)),
-                        ],
+            children: listTransaction.map((tx) {
+              return Card(
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 15,
                       ),
-                    ))
-                .toList(),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.purple,
+                          width: 2,
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        'IDR: ${tx.amount}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple,
+                        ),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          tx.title,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          tx.date.toString(),
+                          style: const TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
           ),
         ],
       ),
     );
+
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     title: const Text("Expense Plan"),
+    //   ),
+    //   body: Column(
+    //     children: [
+    //       const SizedBox(
+    //         width: double.infinity,
+    //         child: Card(
+    //           color: Colors.blue,
+    //           elevation: 5,
+    //           child: Text("Chart"),
+    //         ),
+    //       ),
+    //       Column(
+    //         children: listTransaction
+    //             .map((e) => Card(
+    //                   child: Row(
+    //                     children: [
+    //                       Container(child: Text(e.amount.toString())),
+    //                       Container(child: Text(e.title)),
+    //                     ],
+    //                   ),
+    //                 ))
+    //             .toList(),
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 }
