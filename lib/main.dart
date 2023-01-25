@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_guide/models/transaction.dart';
+import 'package:intl/date_symbol_data_local.dart';
+// import 'package:intl/date_symbol_data_http_request.dart';
+// import 'package:intl/date_symbol_data_http_request.dart';
+import 'package:intl/intl.dart';
 
 void main() {
+  initializeDateFormatting();
   runApp(const MyApp());
 }
 
@@ -35,7 +40,7 @@ class MyHomePage extends StatelessWidget {
       id: "t2",
       title: "Goppay-2",
       amount: 200000,
-      date: DateTime.now(),
+      date: DateTime(2023, 1, 23),
     ),
     Transaction(
       id: "t2",
@@ -111,7 +116,7 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          tx.date.toString(),
+                          "${DateFormat(tx.date.toString(), "id")}",
                           style: const TextStyle(
                             color: Colors.grey,
                           ),
@@ -126,35 +131,5 @@ class MyHomePage extends StatelessWidget {
         ],
       ),
     );
-
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     title: const Text("Expense Plan"),
-    //   ),
-    //   body: Column(
-    //     children: [
-    //       const SizedBox(
-    //         width: double.infinity,
-    //         child: Card(
-    //           color: Colors.blue,
-    //           elevation: 5,
-    //           child: Text("Chart"),
-    //         ),
-    //       ),
-    //       Column(
-    //         children: listTransaction
-    //             .map((e) => Card(
-    //                   child: Row(
-    //                     children: [
-    //                       Container(child: Text(e.amount.toString())),
-    //                       Container(child: Text(e.title)),
-    //                     ],
-    //                   ),
-    //                 ))
-    //             .toList(),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 }
